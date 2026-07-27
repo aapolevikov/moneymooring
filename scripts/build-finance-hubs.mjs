@@ -13,6 +13,21 @@ import {
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const hubByKey = Object.fromEntries(hubs.map((hub) => [hub.key, hub]));
 
+function articleVisual(hub, articlePath) {
+  const index = Math.max(0, hub.articles.findIndex((article) => article[1] === articlePath));
+  return index % 2 === 0
+    ? { src: hub.image, alt: hub.alt }
+    : { src: hub.articleImage, alt: hub.articleAlt };
+}
+
+function renderArticleVisual(hub, articlePath) {
+  const visual = articleVisual(hub, articlePath);
+  return `<figure class="article-visual">
+      <img src="${visual.src}" alt="${escapeHtml(visual.alt)}" width="1536" height="1024" loading="eager" decoding="async">
+      <figcaption>MoneyMooring editorial visual · ${escapeHtml(hub.short)}</figcaption>
+    </figure>`;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -195,16 +210,22 @@ function renderHub(hub) {
       }
     ]
   };
-  const cards = hub.articles.map((article, index) => `
+  const cards = hub.articles.map((article, index) => {
+    const visual = articleVisual(hub, article[1]);
+    return `
       <article class="card hub-article-card">
-        <div class="card-number" aria-hidden="true">0${index + 1}</div>
+        <a class="hub-card-media" href="${article[1]}" aria-label="${escapeHtml(article[0])}">
+          <img src="${visual.src}" alt="" width="1536" height="1024" ${index > 0 ? 'loading="lazy"' : ""} decoding="async">
+          <span class="card-number" aria-hidden="true">0${index + 1}</span>
+        </a>
         <div class="card-body">
           <span class="tag">${escapeHtml(hub.short)}</span>
           <h2><a href="${article[1]}">${escapeHtml(article[0])}</a></h2>
           <p>${escapeHtml(article[2])}</p>
           <a class="more" href="${article[1]}">Read the guide →</a>
         </div>
-      </article>`).join("");
+      </article>`;
+  }).join("");
   const sources = hub.sources.map((source) =>
     `<li><a href="${source[1]}" target="_blank" rel="noopener noreferrer">${escapeHtml(source[0])} ↗</a></li>`
   ).join("");
@@ -236,7 +257,7 @@ ${header()}
   <section class="hub-intro wrap" aria-labelledby="hub-guides-title">
     <div class="hub-intro-copy">
       <span class="eyebrow">Start here</span>
-      <h2 id="hub-guides-title">A three-guide foundation</h2>
+      <h2 id="hub-guides-title">Five practical guides</h2>
       <p>${escapeHtml(hub.intro)}</p>
     </div>
     <div class="hub-standard">
@@ -268,6 +289,7 @@ ${cookieBanner()}
 function renderNewArticle(article) {
   const hub = hubByKey[article.hub];
   const canonical = `https://moneymooring.com/articles/${article.slug}.html`;
+  const visual = articleVisual(hub, `/articles/${article.slug}.html`);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -290,7 +312,8 @@ function renderNewArticle(article) {
       "@type": "Organization",
       name: "MoneyMooring",
       url: "https://moneymooring.com/"
-    }
+    },
+    image: `https://moneymooring.com${visual.src}`
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -342,12 +365,21 @@ ${header()}
 <div class="wrap">
   <article class="article-body">
     <div class="disclosure">Editorial disclosure: this guide is educational and is not individual financial, legal, tax or insurance advice. MoneyMooring does not sell or recommend a specific financial product.</div>
+    ${renderArticleVisual(hub, `/articles/${article.slug}.html`)}
     <div class="takeaways">
       <span class="eyebrow">Key takeaways</span>
       <ul>${takeaways}</ul>
     </div>
     <p>${escapeHtml(article.description)} The examples below are explanatory, not product quotes or promises of approval, savings, coverage or investment performance.</p>
     ${sections}
+    <h2>Use the guide for a documented decision</h2>
+    <p>Before acting on <em>${escapeHtml(article.title)}</em>, write down the facts that apply to your household: the current balance or coverage, the relevant deadline, the exact contract or account terms and the amount your budget can support. Then compare those facts with the official sources below and the latest documents from the institution, insurer, employer or government agency involved.</p>
+    <ul class="checklist">
+      <li>Save the dated statement, disclosure, policy or plan document used in the comparison.</li>
+      <li>Separate confirmed terms from estimates, marketing language and assumptions.</li>
+      <li>Record the question that remains unresolved and who can answer it.</li>
+      <li>Recheck the numbers after a rate, balance, income, law or household change.</li>
+    </ul>
     <div class="rsoc-slot" id="rsoc-article-primary" data-rsoc-unit="article-primary" data-rsoc-provider="" hidden aria-hidden="true"></div>
     <h2>Frequently asked questions</h2>
     <div class="faq">${faqs}</div>
@@ -375,12 +407,12 @@ ${cookieBanner()}
 
 function renderHome() {
   const canonical = "https://moneymooring.com/";
-  const newest = newArticles.slice(0, 12);
+  const newest = newArticles.slice(-12).reverse();
   const topicCards = hubs.map((hub, index) => `
       <a class="topic-card" href="${hub.path}">
         <img src="${hub.image}" alt="" width="1536" height="1024" ${index > 1 ? 'loading="lazy"' : ""} decoding="async">
         <span class="topic-card-shade" aria-hidden="true"></span>
-        <span class="topic-card-content"><b>${String(index + 1).padStart(2, "0")}</b><strong>${escapeHtml(hub.title)}</strong><em>3 in-depth guides →</em></span>
+        <span class="topic-card-content"><b>${String(index + 1).padStart(2, "0")}</b><strong>${escapeHtml(hub.title)}</strong><em>5 in-depth guides →</em></span>
       </a>`).join("");
   const guideCards = newest.map((article) => {
     const hub = hubByKey[article.hub];
@@ -403,7 +435,7 @@ function renderHome() {
 
   return `${head({
     title: "MoneyMooring — Clear Personal Finance Guides for US Readers",
-    description: "Thirty in-depth guides across ten personal finance topics, with worked examples, official sources and clear limitations.",
+    description: "Fifty in-depth guides across ten personal finance topics, with worked examples, official sources and clear limitations.",
     canonical,
     schema: [schema]
   })}
@@ -417,13 +449,13 @@ ${header()}
       <div class="hero-copy">
         <span class="eyebrow">Personal finance, without the jargon</span>
         <h1>Make financial decisions with <em>clearer</em> information.</h1>
-        <p>Thirty in-depth guides across banking, budgeting, credit, debt, mortgages, insurance and retirement—built from official sources and worked examples.</p>
+        <p>Fifty in-depth guides across banking, budgeting, credit, debt, mortgages, insurance and retirement—built from official sources and worked examples.</p>
         <div class="hero-ctas">
           <a class="btn btn-solid" href="#topics">Explore the topics</a>
           <a class="btn btn-ghost" href="/editorial-policy.html">How we work</a>
         </div>
         <div class="hero-stats" aria-label="Publication facts">
-          <div><b>30</b><span>in-depth guides</span></div>
+          <div><b>50</b><span>in-depth guides</span></div>
           <div><b>10</b><span>structured topic hubs</span></div>
           <div><b>Primary</b><span>official sources first</span></div>
         </div>
@@ -444,7 +476,7 @@ ${header()}
     <div class="wrap">
       <div class="section-heading">
         <div><span class="eyebrow">Browse by decision</span><h2>Ten focused money topics</h2></div>
-        <p>Start with the section closest to the decision in front of you. Each hub begins with three substantial guides and will expand deliberately.</p>
+        <p>Start with the section closest to the decision in front of you. Each hub now includes five substantial, source-checked guides.</p>
       </div>
       <div class="topics-grid">${topicCards}
       </div>
@@ -667,6 +699,7 @@ function patchExistingArticle(file) {
   const newTitle = existingArticleTitles[basename];
   if (!hubKey || !newTitle) throw new Error(`Missing assignment or title for ${basename}`);
   const hub = hubByKey[hubKey];
+  const visualData = articleVisual(hub, `/articles/${basename}`);
   let html = fs.readFileSync(file, "utf8");
   const description = existingArticleDescriptions[basename]
     || (html.match(/<meta name="description" content="([^"]+)">/) || [])[1]
@@ -690,7 +723,8 @@ function patchExistingArticle(file) {
       "@type": "Organization",
       name: "MoneyMooring",
       url: "https://moneymooring.com/"
-    }
+    },
+    image: `https://moneymooring.com${visualData.src}`
   };
   const faqSchema = faqs.length ? {
     "@context": "https://schema.org",
@@ -723,6 +757,17 @@ function patchExistingArticle(file) {
 
   for (const [from, to] of existingEvergreenReplacements[basename] || []) {
     html = html.replace(from, to);
+  }
+
+  const articlePath = `/articles/${basename}`;
+  const visual = renderArticleVisual(hub, articlePath);
+  if (html.includes('class="article-visual"')) {
+    html = html.replace(/<figure class="article-visual">[\s\S]*?<\/figure>/, visual);
+  } else {
+    html = html.replace(
+      /(<div class="disclosure">[\s\S]*?<\/div>)/,
+      `$1\n    ${visual}`
+    );
   }
 
   fs.writeFileSync(file, html);
@@ -790,7 +835,7 @@ function writeContentMap() {
       return `| ${hub.title} | [${article[0]}](..${article[1]}) | ${isNew ? "New cornerstone" : "Existing, reassigned"} |`;
     })
   );
-  fs.writeFileSync(path.join(root, "docs", "content-map.md"), `# MoneyMooring content map\n\nUpdated ${checkedDate}.\n\n| Hub | Article | Status |\n|---|---|---|\n${rows.join("\n")}\n\nAll ten hubs launch with three real, linked guides. No placeholder cards are published.\n`);
+  fs.writeFileSync(path.join(root, "docs", "content-map.md"), `# MoneyMooring content map\n\nUpdated ${checkedDate}.\n\n| Hub | Article | Status |\n|---|---|---|\n${rows.join("\n")}\n\nAll ten hubs include five real, linked guides. No placeholder cards are published.\n`);
 }
 
 for (const hub of hubs) {
