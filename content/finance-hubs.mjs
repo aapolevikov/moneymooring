@@ -1,5 +1,7 @@
-export const checkedDate = "July 27, 2026";
-export const isoDate = "2026-07-27";
+import { expansionArticles } from "./finance-expansion.mjs";
+
+export const checkedDate = "July 28, 2026";
+export const isoDate = "2026-07-28";
 
 export const existingArticleTitles = {
   "high-yield-savings-accounts.html": "High-Yield Savings Accounts: How to Compare APYs and Fees",
@@ -29,10 +31,14 @@ export const hubs = [
     intro: "Use this section to decide where cash belongs, how access affects return, and what deposit insurance does—and does not—protect.",
     image: "/assets/topic-savings-v1.jpg",
     alt: "Savings planning still life with a glass savings vessel and notebook",
+    articleImage: "/assets/article-savings-v1.jpg",
+    articleAlt: "Bank statement folder, account ledgers and brass key on a forest-green desk",
     articles: [
       ["High-Yield Savings Accounts: How to Compare APYs and Fees", "/articles/high-yield-savings-accounts.html", "Compare yield, access, minimums and fees without relying on a promotional rate alone."],
       ["CDs vs. Savings Accounts: Liquidity, Rates and Trade-Offs", "/articles/cd-vs-savings-account.html", "Match a deposit product to when you need the money and understand early-withdrawal trade-offs."],
-      ["FDIC Deposit Insurance: Coverage Rules and Common Mistakes", "/articles/fdic-deposit-insurance-explained.html", "Learn the standard limit, ownership categories and why opening more accounts at one bank may not add coverage."]
+      ["FDIC Deposit Insurance: Coverage Rules and Common Mistakes", "/articles/fdic-deposit-insurance-explained.html", "Learn the standard limit, ownership categories and why opening more accounts at one bank may not add coverage."],
+      ["Checking Account Fees: A Practical Comparison Guide", "/articles/checking-account-fees-guide.html", "Compare maintenance fees, overdraft choices, ATM access, holds and everyday service costs."],
+      ["Joint Bank Accounts and Beneficiaries: Ownership and FDIC Basics", "/articles/joint-bank-accounts-beneficiaries.html", "Separate joint-owner access from beneficiary designations and understand the related FDIC categories."]
     ],
     sources: [
       ["FDIC deposit insurance resources", "https://www.fdic.gov/resources/deposit-insurance/"],
@@ -48,10 +54,14 @@ export const hubs = [
     intro: "A useful budget is a decision system, not a restriction. These guides separate routine spending, irregular bills and true financial shocks.",
     image: "/assets/topic-budgeting-v1.jpg",
     alt: "Forest-green budgeting notebook, blank calendar sheet and organized envelopes",
+    articleImage: "/assets/article-budgeting-v1.jpg",
+    articleAlt: "Blank monthly calendar, budgeting notebook and organized envelopes in warm daylight",
     articles: [
       ["How to Build a Monthly Budget That Matches Your Pay Cycle", "/articles/how-to-build-a-monthly-budget.html", "Turn income, bills and flexible spending into a week-by-week plan you can maintain."],
       ["Sinking Funds: A Practical System for Irregular Expenses", "/articles/sinking-funds-guide.html", "Convert annual and seasonal bills into predictable monthly savings targets."],
-      ["Emergency Funds: How to Set a Practical Savings Target", "/articles/emergency-fund-how-much.html", "Define what counts as an emergency and set a target based on essential spending and household risk."]
+      ["Emergency Funds: How to Set a Practical Savings Target", "/articles/emergency-fund-how-much.html", "Define what counts as an emergency and set a target based on essential spending and household risk."],
+      ["How to Budget With Variable Income", "/articles/variable-income-budget.html", "Build a conservative cash-flow plan for freelance, commission or seasonal earnings."],
+      ["Bill Calendar Guide: Match Due Dates to Your Pay Cycle", "/articles/bill-calendar-guide.html", "Put income and due dates on one calendar to expose timing gaps before they create fees."]
     ],
     sources: [
       ["CFPB Your Money, Your Goals toolkit", "https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/toolkit/"],
@@ -67,10 +77,14 @@ export const hubs = [
     intro: "Credit reports contain the underlying account information; scores summarize parts of that file. Start with accuracy, then work on durable habits.",
     image: "/assets/topic-credit-scores-v1.jpg",
     alt: "Magnifying glass over neutral paper sheets on a dark green editorial desk",
+    articleImage: "/assets/article-credit-reports-v1.jpg",
+    articleAlt: "Magnifying glass, abstract credit report pages and brass security lock",
     articles: [
       ["How to Dispute Errors on Your Credit Reports", "/articles/how-to-dispute-credit-report-errors.html", "Document the problem, contact both the reporting company and furnisher, and preserve a clear paper trail."],
       ["Credit Freezes: What They Block and How to Manage Them", "/articles/credit-freeze-guide.html", "Understand the free federal security-freeze process and when a temporary lift is needed."],
-      ["How Credit Scores Change: Fast and Slow Factors", "/articles/improve-credit-score-fast.html", "Separate actions that may affect utilization quickly from improvements that require a longer payment history."]
+      ["How Credit Scores Change: Fast and Slow Factors", "/articles/improve-credit-score-fast.html", "Separate actions that may affect utilization quickly from improvements that require a longer payment history."],
+      ["Annual Credit Reports: How to Request and Review All Three", "/articles/annual-credit-reports-guide.html", "Use the official access point, compare all three nationwide files and organize any dispute."],
+      ["Credit Utilization Explained: Balances, Limits and Reporting Dates", "/articles/credit-utilization-explained.html", "Calculate per-card and overall utilization without treating one percentage as a score promise."]
     ],
     sources: [
       ["CFPB credit reports and scores", "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/"],
@@ -86,10 +100,14 @@ export const hubs = [
     intro: "A card can be a payment tool or expensive revolving debt. These guides focus on statements, interest math and clear comparison criteria.",
     image: "/assets/topic-credit-cards-v1.jpg",
     alt: "Three unbranded payment cards arranged on a refined neutral surface",
+    articleImage: "/assets/article-credit-cards-v1.jpg",
+    articleAlt: "Unbranded payment cards, statement pages and a brass payment timeline",
     articles: [
       ["Credit Card APR and Interest: A Statement-by-Statement Guide", "/articles/credit-card-apr-interest-explained.html", "See how purchase APR, daily periodic rates, grace periods and multiple balances interact."],
       ["Balance Transfer Credit Cards: Fees, Timelines and Payoff Planning", "/articles/balance-transfer-credit-cards.html", "Calculate the transfer fee, required monthly payment and deadline before moving a balance."],
-      ["Cash-Back Credit Cards: Rewards, Fees and Interest", "/articles/cash-back-credit-cards-guide.html", "Compare reward structures without ignoring annual fees, caps or the cost of carrying a balance."]
+      ["Cash-Back Credit Cards: Rewards, Fees and Interest", "/articles/cash-back-credit-cards-guide.html", "Compare reward structures without ignoring annual fees, caps or the cost of carrying a balance."],
+      ["Credit Card Grace Periods: How Purchase Interest Can Be Avoided", "/articles/credit-card-grace-period.html", "Read the cycle, due date and transaction rules that determine whether purchase interest applies."],
+      ["Minimum Credit Card Payments: Cost, Timing and a Payoff Plan", "/articles/minimum-credit-card-payment-cost.html", "See what the required minimum protects, what it does not, and how extra payments change payoff."]
     ],
     sources: [
       ["CFPB credit card resources", "https://www.consumerfinance.gov/consumer-tools/credit-cards/"],
@@ -105,10 +123,14 @@ export const hubs = [
     intro: "The first step is a complete debt list. From there, choose a repayment order, protect required payments and compare any new loan against the old total cost.",
     image: "/assets/topic-debt-v1.jpg",
     alt: "Disordered paper forms becoming a clear descending sequence of blocks",
+    articleImage: "/assets/article-debt-v1.jpg",
+    articleAlt: "Organized debt ledger, sealed letters and descending balance markers",
     articles: [
       ["Debt-to-Income Ratio: Calculation, Uses and Limits", "/articles/debt-to-income-ratio.html", "Calculate monthly DTI using gross income and understand what the number leaves out of a household budget."],
       ["Debt Avalanche vs. Debt Snowball: How the Two Payoff Methods Compare", "/articles/avalanche-vs-snowball.html", "Compare interest-minimizing and momentum-focused repayment orders with the same sample balances."],
-      ["Debt Consolidation Loans: Benefits, Fees and Risks", "/articles/debt-consolidation-loans.html", "Test whether a new loan reduces total cost after fees and whether the payment fits your cash flow."]
+      ["Debt Consolidation Loans: Benefits, Fees and Risks", "/articles/debt-consolidation-loans.html", "Test whether a new loan reduces total cost after fees and whether the payment fits your cash flow."],
+      ["Debt Collection Validation Notices: A Response Checklist", "/articles/debt-collection-validation-rights.html", "Review the collector, itemized debt and response deadline before paying or disputing."],
+      ["Nonprofit Credit Counseling and Debt Management Plans", "/articles/nonprofit-credit-counseling-guide.html", "Understand counseling, plan fees, creditor participation and the difference from settlement."]
     ],
     sources: [
       ["CFPB debt collection resources", "https://www.consumerfinance.gov/consumer-tools/debt-collection/"],
@@ -124,10 +146,14 @@ export const hubs = [
     intro: "A lower payment is not automatically a lower-cost loan. Compare the amount received, APR, required payment, total of payments and collateral risk.",
     image: "/assets/topic-personal-loans-v1.jpg",
     alt: "Two ordered rows of blank comparison cards beside a brass balance weight",
+    articleImage: "/assets/article-personal-loans-v1.jpg",
+    articleAlt: "Personal-loan comparison page, blank calculator and brass balance on a green desk",
     articles: [
       ["Secured vs. Unsecured Personal Loans: Risk and Cost", "/articles/secured-vs-unsecured-personal-loans.html", "Understand collateral, lender remedies and the questions to ask before pledging an asset."],
       ["Personal Loan APR and Fees: How to Compare Offers", "/articles/personal-loan-apr-fees.html", "Compare the cash you receive with the total repayment after origination and other disclosed fees."],
-      ["Personal Loans: Rates, Fees and Prequalification", "/articles/personal-loans-explained.html", "Use prequalification carefully and compare term length, payment and total cost before accepting a loan."]
+      ["Personal Loans: Rates, Fees and Prequalification", "/articles/personal-loans-explained.html", "Use prequalification carefully and compare term length, payment and total cost before accepting a loan."],
+      ["Personal Loan Prequalification: What to Compare Before Applying", "/articles/personal-loan-prequalification.html", "Distinguish an estimate from approval and ask when a hard credit inquiry occurs."],
+      ["Personal Loan Payment Calculator: Formula, Fees and Total Cost", "/articles/personal-loan-payment-calculator.html", "Estimate a fixed payment while accounting for net proceeds, APR and total repayment."]
     ],
     sources: [
       ["CFPB personal installment loan fees", "https://www.consumerfinance.gov/ask-cfpb/do-personal-installment-loans-have-fees-en-2120/"],
@@ -143,10 +169,14 @@ export const hubs = [
     intro: "Home affordability starts with the household budget, not a lender maximum. Compare cash to close, monthly housing cost and long-term flexibility.",
     image: "/assets/topic-mortgages-v1.jpg",
     alt: "Architectural house model, blueprint and key on a neutral surface",
+    articleImage: "/assets/article-mortgages-v1.jpg",
+    articleAlt: "Architectural house model, closing folder, blueprint and brass key",
     articles: [
       ["FHA vs. Conventional Loans: Down Payments, Insurance and Eligibility", "/articles/fha-vs-conventional-loans.html", "Compare the two loan paths across credit profile, mortgage insurance and long-term cost."],
       ["How Much House Can You Afford? A Practical Budget Framework", "/articles/how-much-house-can-you-afford.html", "Build a housing ceiling from income, debts, cash reserves, taxes, insurance and maintenance."],
-      ["Mortgage Refinancing: Costs, Break-Even Math and Timing", "/articles/mortgage-refinance-guide.html", "Estimate break-even time and compare the new term with the remaining cost of the current loan."]
+      ["Mortgage Refinancing: Costs, Break-Even Math and Timing", "/articles/mortgage-refinance-guide.html", "Estimate break-even time and compare the new term with the remaining cost of the current loan."],
+      ["Mortgage Closing Costs: Read the Loan Estimate and Cash to Close", "/articles/mortgage-closing-costs.html", "Separate lender fees, prepaids, escrow, credits, down payment and cash to close."],
+      ["Mortgage Preapproval Documents and Questions to Prepare", "/articles/mortgage-preapproval-documents.html", "Organize income, asset and debt records while treating the letter as tentative."]
     ],
     sources: [
       ["CFPB mortgage resources", "https://www.consumerfinance.gov/consumer-tools/mortgages/"],
@@ -162,10 +192,14 @@ export const hubs = [
     intro: "Auto coverage is regulated by state and policy wording matters. Compare the same limits and deductibles before treating one quote as cheaper.",
     image: "/assets/topic-auto-insurance-v1.jpg",
     alt: "Unbranded sedan model protected beneath a clear glass form",
+    articleImage: "/assets/article-auto-insurance-v1.jpg",
+    articleAlt: "Sedan model, policy folder, blank incident checklist and camera",
     articles: [
       ["Auto Insurance Coverage Types: Liability, Collision and Comprehensive", "/articles/auto-insurance-coverage-types.html", "Learn what major coverage categories generally protect and which choices depend on state law or a lender."],
       ["Auto Insurance Deductibles and Quote Comparison", "/articles/auto-insurance-deductibles-quotes.html", "Hold coverage limits constant, compare deductibles and check exclusions before choosing a quote."],
-      ["Car Insurance for Older Drivers: Coverage and Quote Comparison", "/articles/car-insurance-for-seniors.html", "Review changing mileage, driver lists, discounts and coverage rather than assuming age alone determines price."]
+      ["Car Insurance for Older Drivers: Coverage and Quote Comparison", "/articles/car-insurance-for-seniors.html", "Review changing mileage, driver lists, discounts and coverage rather than assuming age alone determines price."],
+      ["Uninsured and Underinsured Motorist Coverage", "/articles/uninsured-underinsured-motorist-coverage.html", "Understand another driver’s insurance gap and the state-specific policy rules to check."],
+      ["Auto Insurance Claim Checklist After a Crash", "/articles/auto-insurance-claim-checklist.html", "Prioritize safety, preserve facts and organize the claim from first notice to settlement."]
     ],
     sources: [
       ["NAIC auto insurance consumer guide", "https://content.naic.org/consumer/auto-insurance.htm"],
@@ -181,10 +215,14 @@ export const hubs = [
     intro: "Insurance transfers defined risks; it does not make every loss disappear. Start with what is covered, what is excluded and how a claim would be valued.",
     image: "/assets/topic-insurance-v1.jpg",
     alt: "Modern home and car models protected beneath a clear architectural canopy",
+    articleImage: "/assets/article-home-life-insurance-v1.jpg",
+    articleAlt: "Home model under a glass canopy beside flood-risk contours and planning documents",
     articles: [
       ["Homeowners Insurance: Coverage, Limits and Common Gaps", "/articles/home-insurance-what-it-covers.html", "Review dwelling, personal property, liability and additional-living-expense coverage alongside exclusions."],
       ["Renters Insurance: Property, Liability and Loss-of-Use Coverage", "/articles/renters-insurance-guide.html", "Separate the landlord’s building policy from protection for your belongings and personal liability."],
-      ["Term vs. Whole Life Insurance: Costs and Trade-Offs", "/articles/term-vs-whole-life-insurance.html", "Compare a defined coverage term with permanent coverage and cash-value features."]
+      ["Term vs. Whole Life Insurance: Costs and Trade-Offs", "/articles/term-vs-whole-life-insurance.html", "Compare a defined coverage term with permanent coverage and cash-value features."],
+      ["Flood Insurance Basics: Building, Contents and Waiting Periods", "/articles/flood-insurance-basics.html", "Separate building and contents protection and confirm limits, deductibles and effective dates."],
+      ["How Much Life Insurance? A Needs-Based Planning Framework", "/articles/life-insurance-needs-framework.html", "Estimate survivor needs from obligations, income gaps, caregiving and available resources."]
     ],
     sources: [
       ["NAIC homeowners insurance resources", "https://content.naic.org/consumer/homeowners-insurance.htm"],
@@ -200,10 +238,14 @@ export const hubs = [
     intro: "Retirement planning combines savings vehicles, taxes and public benefits. These guides explain the rules without predicting returns or replacing tax advice.",
     image: "/assets/topic-retirement-v1.jpg",
     alt: "Brass hourglass, green planning book, compass and ascending blocks",
+    articleImage: "/assets/article-retirement-v1.jpg",
+    articleAlt: "Retirement plan folder, blank calendar, contribution ledger and brass compass",
     articles: [
       ["401(k) Basics: Contributions, Matching and Vesting", "/articles/401k-basics.html", "Read the plan documents, capture employer contributions and understand the difference between traditional and Roth deferrals."],
       ["Traditional vs. Roth IRA: Tax Timing and Withdrawal Rules", "/articles/traditional-vs-roth-ira.html", "Compare possible deductions today with the conditions for tax-free qualified Roth distributions."],
-      ["Social Security Retirement Benefits: Eligibility and Claiming Age", "/articles/social-security-retirement-basics.html", "Understand work credits, early claiming, full retirement age and why an SSA estimate matters."]
+      ["Social Security Retirement Benefits: Eligibility and Claiming Age", "/articles/social-security-retirement-basics.html", "Understand work credits, early claiming, full retirement age and why an SSA estimate matters."],
+      ["401(k) Employer Match and Vesting: Read Your Plan", "/articles/employer-match-vesting.html", "Separate your own contributions from employer money and understand the plan’s vesting schedule."],
+      ["Required Minimum Distributions: Accounts, Timing and Calculation", "/articles/required-minimum-distributions-basics.html", "Review covered accounts, first-year timing, prior-year balances and IRS life-expectancy factors."]
     ],
     sources: [
       ["IRS retirement plan resources", "https://www.irs.gov/retirement-plans"],
@@ -638,3 +680,5 @@ export const newArticles = [
     ]
   }
 ];
+
+newArticles.push(...expansionArticles);

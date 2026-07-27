@@ -138,6 +138,7 @@ for (const file of htmlFiles) {
   if (relative.startsWith("articles/")) {
     for (const required of [
       'class="breadcrumbs"',
+      'class="article-visual"',
       'class="article-resources"',
       'data-source-list',
       'class="editorial-card"',
@@ -150,6 +151,9 @@ for (const file of htmlFiles) {
     if (!html.includes('"@type":"Article"')) fail(`${relative}: Article schema is missing`);
     if (!html.includes('"@type":"FAQPage"')) fail(`${relative}: FAQPage schema is missing`);
     if (!html.includes('class="faq"')) fail(`${relative}: visible FAQ section is missing`);
+    const articleText = stripMarkup((html.match(/<article class="article-body">([\s\S]*?)<\/article>/) || [])[1] || "");
+    const articleWords = articleText.split(/\s+/).filter(Boolean).length;
+    if (articleWords < 500) fail(`${relative}: article body is too short (${articleWords} words)`);
   }
 
   if (relative === "index.html") {
@@ -169,15 +173,25 @@ for (const file of htmlFiles) {
       "topic-debt-v1.jpg",
       "topic-credit-cards-v1.jpg",
       "topic-mortgages-v1.jpg",
+      "article-savings-v1.jpg",
+      "article-budgeting-v1.jpg",
+      "article-credit-reports-v1.jpg",
+      "article-credit-cards-v1.jpg",
+      "article-debt-v1.jpg",
+      "article-personal-loans-v1.jpg",
+      "article-mortgages-v1.jpg",
+      "article-auto-insurance-v1.jpg",
+      "article-home-life-insurance-v1.jpg",
+      "article-retirement-v1.jpg",
     ]) {
-      if (!html.includes(`/assets/${image}`)) fail(`index.html: missing generated image ${image}`);
+      if (!fs.existsSync(path.join(root, "assets", image))) fail(`assets: missing generated image ${image}`);
     }
   }
 
   if (hubPages.includes(relative)) {
     if (!html.includes('class="category-visual"')) fail(`${relative}: category image is missing`);
     const guideCards = matches(html, /class="card hub-article-card"/g).length;
-    if (guideCards !== 3) fail(`${relative}: expected 3 complete guide cards, found ${guideCards}`);
+    if (guideCards !== 5) fail(`${relative}: expected 5 complete guide cards, found ${guideCards}`);
     if (!html.includes('"@type":"CollectionPage"')) fail(`${relative}: CollectionPage schema is missing`);
   }
 }
@@ -187,7 +201,7 @@ function stripMarkup(value) {
 }
 
 const articleCount = htmlFiles.filter((file) => path.relative(root, file).startsWith("articles" + path.sep)).length;
-if (articleCount !== 30) fail(`expected 30 article pages, found ${articleCount}`);
+if (articleCount !== 50) fail(`expected 50 article pages, found ${articleCount}`);
 if (hubPages.some((page) => !fs.existsSync(path.join(root, page)))) {
   fail("one or more required topic hubs are missing");
 }
