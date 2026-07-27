@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">MoneyMooring editorial finance guides</title>
+  <desc id="desc">Dark green editorial cover with the MoneyMooring wordmark and a clear money guides message.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a2026"/>
+      <stop offset="0.58" stop-color="#102c31"/>
+      <stop offset="1" stop-color="#183d3b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#84d2ad"/>
+      <stop offset="1" stop-color="#d3a34c"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#031014" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="8" fill="url(#accent)"/>
+  <circle cx="1070" cy="55" r="310" fill="#6dcc9f" opacity="0.055"/>
+  <circle cx="1105" cy="655" r="345" fill="#d3a34c" opacity="0.055"/>
+  <g opacity="0.16" fill="none" stroke="#a9dec5" stroke-width="2">
+    <path d="M870 476h250"/>
+    <path d="M870 428h196"/>
+    <path d="M870 380h220"/>
+  </g>
+  <g transform="translate(820 230)" filter="url(#shadow)">
+    <rect x="0" y="172" width="62" height="148" rx="10" fill="#1a4d4a"/>
+    <rect x="84" y="123" width="62" height="197" rx="10" fill="#2e7462"/>
+    <rect x="168" y="63" width="62" height="257" rx="10" fill="#82d1ac"/>
+    <rect x="252" y="103" width="62" height="217" rx="10" fill="#d3a34c"/>
+    <path d="M10 145L115 98l84-64 84 42" fill="none" stroke="#f4efe6" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="10" cy="145" r="9" fill="#f4efe6"/>
+    <circle cx="199" cy="34" r="10" fill="#f4efe6"/>
+  </g>
+  <g transform="translate(88 86)">
+    <text x="0" y="56" fill="#f7f3eb" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="700">Money<tspan fill="#82d1ac">Mooring</tspan></text>
+    <text x="0" y="145" fill="#93d9b9" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="4">PERSONAL FINANCE, MADE CLEAR</text>
+    <text x="0" y="236" fill="#f7f3eb" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="700">Understand the math.</text>
+    <text x="0" y="310" fill="#f7f3eb" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="700">See the trade-offs.</text>
+    <rect x="0" y="350" width="430" height="2" fill="#82d1ac" opacity="0.6"/>
+    <text x="0" y="405" fill="#c4d3d0" font-family="Arial, Helvetica, sans-serif" font-size="25">Savings · Insurance · Debt · Credit cards · Mortgages</text>
+    <text x="0" y="465" fill="#829894" font-family="Arial, Helvetica, sans-serif" font-size="20">Educational information for US readers</text>
+  </g>
+</svg>
