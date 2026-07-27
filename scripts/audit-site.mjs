@@ -41,6 +41,21 @@ function resolveLocalLink(fromFile, href) {
 const htmlFiles = walk(root).filter((file) => !path.basename(file).startsWith("google"));
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
 const sitemapUrls = matches(sitemap, /<loc>([^<]+)<\/loc>/g).map((match) => match[1]);
+const titles = new Map();
+const headings = new Map();
+const descriptions = new Map();
+const hubPages = [
+  "savings.html",
+  "budgeting.html",
+  "credit-scores.html",
+  "credit-cards.html",
+  "debt.html",
+  "personal-loans.html",
+  "mortgages.html",
+  "auto-insurance.html",
+  "insurance.html",
+  "retirement-taxes-benefits.html",
+];
 
 if (htmlFiles.length !== sitemapUrls.length) {
   fail(`HTML/sitemap count mismatch: ${htmlFiles.length} HTML pages, ${sitemapUrls.length} sitemap URLs`);
@@ -73,6 +88,16 @@ for (const file of htmlFiles) {
     fail(`${relative}: canonical should be ${canonical}`);
   }
   if (!sitemapUrls.includes(canonical)) fail(`${relative}: canonical missing from sitemap`);
+
+  const titleText = stripMarkup((html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || "");
+  const h1Text = stripMarkup((html.match(/<h1(?:\s[^>]*)?>([\s\S]*?)<\/h1>/) || [])[1] || "");
+  const descriptionText = (html.match(/<meta\s+name="description"\s+content="([^"]+)">/) || [])[1] || "";
+  if (titles.has(titleText)) fail(`${relative}: duplicate title with ${titles.get(titleText)}`);
+  else titles.set(titleText, relative);
+  if (headings.has(h1Text)) fail(`${relative}: duplicate H1 with ${headings.get(h1Text)}`);
+  else headings.set(h1Text, relative);
+  if (descriptions.has(descriptionText)) fail(`${relative}: duplicate description with ${descriptions.get(descriptionText)}`);
+  else descriptions.set(descriptionText, relative);
 
   for (const block of matches(html, /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try {
@@ -122,14 +147,24 @@ for (const file of htmlFiles) {
     ]) {
       if (!html.includes(required)) fail(`${relative}: missing article element ${required}`);
     }
+    if (!html.includes('"@type":"Article"')) fail(`${relative}: Article schema is missing`);
+    if (!html.includes('"@type":"FAQPage"')) fail(`${relative}: FAQPage schema is missing`);
+    if (!html.includes('class="faq"')) fail(`${relative}: visible FAQ section is missing`);
   }
 
   if (relative === "index.html") {
-    const latestCards = matches(html, /<article class="card">/g).length;
-    if (latestCards !== 14) fail(`index.html: expected 14 latest-guide cards, found ${latestCards}`);
+    const latestCards = matches(html, /<article class="card card-text">/g).length;
+    if (latestCards !== 12) fail(`index.html: expected 12 latest-guide cards, found ${latestCards}`);
+    const topicCards = matches(html, /class="topic-card"/g).length;
+    if (topicCards !== 10) fail(`index.html: expected 10 topic cards, found ${topicCards}`);
     for (const image of [
       "hero-editorial-v1.jpg",
       "topic-savings-v1.jpg",
+      "topic-budgeting-v1.jpg",
+      "topic-credit-scores-v1.jpg",
+      "topic-personal-loans-v1.jpg",
+      "topic-auto-insurance-v1.jpg",
+      "topic-retirement-v1.jpg",
       "topic-insurance-v1.jpg",
       "topic-debt-v1.jpg",
       "topic-credit-cards-v1.jpg",
@@ -139,9 +174,22 @@ for (const file of htmlFiles) {
     }
   }
 
-  if (["savings.html", "insurance.html", "debt.html", "credit-cards.html", "mortgages.html"].includes(relative)) {
+  if (hubPages.includes(relative)) {
     if (!html.includes('class="category-visual"')) fail(`${relative}: category image is missing`);
+    const guideCards = matches(html, /class="card hub-article-card"/g).length;
+    if (guideCards !== 3) fail(`${relative}: expected 3 complete guide cards, found ${guideCards}`);
+    if (!html.includes('"@type":"CollectionPage"')) fail(`${relative}: CollectionPage schema is missing`);
   }
+}
+
+function stripMarkup(value) {
+  return value.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+const articleCount = htmlFiles.filter((file) => path.relative(root, file).startsWith("articles" + path.sep)).length;
+if (articleCount !== 30) fail(`expected 30 article pages, found ${articleCount}`);
+if (hubPages.some((page) => !fs.existsSync(path.join(root, page)))) {
+  fail("one or more required topic hubs are missing");
 }
 
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
@@ -165,7 +213,8 @@ if (!fs.existsSync(path.join(root, "assets", "moneymooring-social.png"))) {
 
 notes.push(`${htmlFiles.length} public HTML pages`);
 notes.push(`${sitemapUrls.length} sitemap URLs`);
-notes.push("canonical, metadata, H1, JSON-LD and internal links checked");
+notes.push(`${articleCount} article pages across ${hubPages.length} topic hubs`);
+notes.push("unique title/description/H1, canonical, JSON-LD and internal links checked");
 notes.push("RSOC hooks hidden; GA4 and Meta IDs blank");
 
 if (failures.length) {
