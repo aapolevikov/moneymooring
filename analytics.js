@@ -158,7 +158,7 @@
   }
 
   function installRsocTracking() {
-    var units = document.querySelectorAll(".related-search");
+    var units = document.querySelectorAll(".rsoc-slot:not([hidden])");
     if (!units.length) return;
 
     units.forEach(function (unit, index) {
@@ -184,7 +184,7 @@
     }
 
     document.addEventListener("click", function (event) {
-      var unit = event.target.closest && event.target.closest(".related-search");
+      var unit = event.target.closest && event.target.closest(".rsoc-slot:not([hidden])");
       if (!unit) return;
       track("rsoc_interaction", {
         rsoc_unit: unit.getAttribute("data-rsoc-unit"),
@@ -230,7 +230,9 @@
   function syncBanner() {
     var banner = document.getElementById("ck");
     if (!banner) return;
-    banner.style.display = getConsent() ? "none" : "block";
+    var pending = !getConsent();
+    banner.style.display = pending ? "block" : "none";
+    document.body.classList.toggle("consent-pending", pending);
   }
 
   window.ckSet = function (value) {
