@@ -2,55 +2,263 @@
   "use strict";
 
   var GUIDE_LIBRARY = {
-    Savings: [
-      ["High-Yield Savings Accounts: How to Compare APYs and Fees", "/articles/high-yield-savings-accounts.html"],
-      ["Emergency Funds: A Practical Savings Target", "/articles/emergency-fund-how-much.html"],
-      ["CDs vs. Savings Accounts: When Locking Money Makes Sense", "/articles/cd-vs-savings-account.html"]
+    "Savings & banking": [
+        [
+            "High-Yield Savings Accounts: How to Compare APYs and Fees",
+            "/articles/high-yield-savings-accounts.html"
+        ],
+        [
+            "CDs vs. Savings Accounts: Liquidity, Rates and Trade-Offs",
+            "/articles/cd-vs-savings-account.html"
+        ],
+        [
+            "FDIC Deposit Insurance: Coverage Rules and Common Mistakes",
+            "/articles/fdic-deposit-insurance-explained.html"
+        ]
     ],
-    Insurance: [
-      ["Car Insurance for Seniors: A Smarter Comparison Process", "/articles/car-insurance-for-seniors.html"],
-      ["Homeowners Insurance: Coverage and Common Gaps", "/articles/home-insurance-what-it-covers.html"],
-      ["Term vs. Whole Life Insurance: The Core Trade-offs", "/articles/term-vs-whole-life-insurance.html"]
+    "Budgeting & emergency funds": [
+        [
+            "How to Build a Monthly Budget That Matches Your Pay Cycle",
+            "/articles/how-to-build-a-monthly-budget.html"
+        ],
+        [
+            "Sinking Funds: A Practical System for Irregular Expenses",
+            "/articles/sinking-funds-guide.html"
+        ],
+        [
+            "Emergency Funds: How to Set a Practical Savings Target",
+            "/articles/emergency-fund-how-much.html"
+        ]
     ],
-    Debt: [
-      ["Debt Consolidation Loans: Benefits, Fees and Risks", "/articles/debt-consolidation-loans.html"],
-      ["Debt Avalanche vs. Snowball: Choosing a Payoff Method", "/articles/avalanche-vs-snowball.html"],
-      ["Personal Loans: Rates, Fees and Prequalification", "/articles/personal-loans-explained.html"]
+    "Credit scores & reports": [
+        [
+            "How to Dispute Errors on Your Credit Reports",
+            "/articles/how-to-dispute-credit-report-errors.html"
+        ],
+        [
+            "Credit Freezes: What They Block and How to Manage Them",
+            "/articles/credit-freeze-guide.html"
+        ],
+        [
+            "How Credit Scores Change: Fast and Slow Factors",
+            "/articles/improve-credit-score-fast.html"
+        ]
     ],
     "Credit cards": [
-      ["Balance Transfer Cards: The 0% APR Timeline", "/articles/balance-transfer-credit-cards.html"],
-      ["How Credit Scores Change: Fast and Slow Factors", "/articles/improve-credit-score-fast.html"],
-      ["Cash Back Cards: Rewards, Fees and Interest", "/articles/cash-back-credit-cards-guide.html"]
+        [
+            "Credit Card APR and Interest: A Statement-by-Statement Guide",
+            "/articles/credit-card-apr-interest-explained.html"
+        ],
+        [
+            "Balance Transfer Credit Cards: Fees, Timelines and Payoff Planning",
+            "/articles/balance-transfer-credit-cards.html"
+        ],
+        [
+            "Cash-Back Credit Cards: Rewards, Fees and Interest",
+            "/articles/cash-back-credit-cards-guide.html"
+        ]
     ],
-    Mortgages: [
-      ["Mortgage Refinance: Running the Break-even Math", "/articles/mortgage-refinance-guide.html"],
-      ["How Much House Can You Afford?", "/articles/how-much-house-can-you-afford.html"],
-      ["FHA vs. Conventional Loans: A Side-by-side Guide", "/articles/fha-vs-conventional-loans.html"]
+    "Debt management": [
+        [
+            "Debt-to-Income Ratio: Calculation, Uses and Limits",
+            "/articles/debt-to-income-ratio.html"
+        ],
+        [
+            "Debt Avalanche vs. Debt Snowball: How the Two Payoff Methods Compare",
+            "/articles/avalanche-vs-snowball.html"
+        ],
+        [
+            "Debt Consolidation Loans: Benefits, Fees and Risks",
+            "/articles/debt-consolidation-loans.html"
+        ]
+    ],
+    "Personal loans": [
+        [
+            "Secured vs. Unsecured Personal Loans: Risk and Cost",
+            "/articles/secured-vs-unsecured-personal-loans.html"
+        ],
+        [
+            "Personal Loan APR and Fees: How to Compare Offers",
+            "/articles/personal-loan-apr-fees.html"
+        ],
+        [
+            "Personal Loans: Rates, Fees and Prequalification",
+            "/articles/personal-loans-explained.html"
+        ]
+    ],
+    "Mortgages & home buying": [
+        [
+            "FHA vs. Conventional Loans: Down Payments, Insurance and Eligibility",
+            "/articles/fha-vs-conventional-loans.html"
+        ],
+        [
+            "How Much House Can You Afford? A Practical Budget Framework",
+            "/articles/how-much-house-can-you-afford.html"
+        ],
+        [
+            "Mortgage Refinancing: Costs, Break-Even Math and Timing",
+            "/articles/mortgage-refinance-guide.html"
+        ]
+    ],
+    "Auto insurance": [
+        [
+            "Auto Insurance Coverage Types: Liability, Collision and Comprehensive",
+            "/articles/auto-insurance-coverage-types.html"
+        ],
+        [
+            "Auto Insurance Deductibles and Quote Comparison",
+            "/articles/auto-insurance-deductibles-quotes.html"
+        ],
+        [
+            "Car Insurance for Older Drivers: Coverage and Quote Comparison",
+            "/articles/car-insurance-for-seniors.html"
+        ]
+    ],
+    "Home & life insurance": [
+        [
+            "Homeowners Insurance: Coverage, Limits and Common Gaps",
+            "/articles/home-insurance-what-it-covers.html"
+        ],
+        [
+            "Renters Insurance: Property, Liability and Loss-of-Use Coverage",
+            "/articles/renters-insurance-guide.html"
+        ],
+        [
+            "Term vs. Whole Life Insurance: Costs and Trade-Offs",
+            "/articles/term-vs-whole-life-insurance.html"
+        ]
+    ],
+    "Retirement, taxes & benefits": [
+        [
+            "401(k) Basics: Contributions, Matching and Vesting",
+            "/articles/401k-basics.html"
+        ],
+        [
+            "Traditional vs. Roth IRA: Tax Timing and Withdrawal Rules",
+            "/articles/traditional-vs-roth-ira.html"
+        ],
+        [
+            "Social Security Retirement Benefits: Eligibility and Claiming Age",
+            "/articles/social-security-retirement-basics.html"
+        ]
     ]
-  };
+};
 
   var SOURCE_LIBRARY = {
-    Savings: [
-      ["FDIC deposit insurance", "https://www.fdic.gov/resources/deposit-insurance"],
-      ["CFPB consumer financial tools", "https://www.consumerfinance.gov/consumer-tools/"]
+    "Savings & banking": [
+        [
+            "FDIC deposit insurance resources",
+            "https://www.fdic.gov/resources/deposit-insurance/"
+        ],
+        [
+            "CFPB bank account resources",
+            "https://www.consumerfinance.gov/consumer-tools/bank-accounts/"
+        ]
     ],
-    Insurance: [
-      ["NAIC consumer insurance resources", "https://content.naic.org/consumer"],
-      ["Federal Trade Commission consumer advice", "https://consumer.ftc.gov/"]
+    "Budgeting & emergency funds": [
+        [
+            "CFPB Your Money, Your Goals toolkit",
+            "https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/toolkit/"
+        ],
+        [
+            "CFPB emergency fund guide",
+            "https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/"
+        ]
     ],
-    Debt: [
-      ["CFPB debt collection resources", "https://www.consumerfinance.gov/consumer-tools/debt-collection/"],
-      ["CFPB personal finance tools", "https://www.consumerfinance.gov/consumer-tools/"]
+    "Credit scores & reports": [
+        [
+            "CFPB credit reports and scores",
+            "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/"
+        ],
+        [
+            "FTC identity theft recovery",
+            "https://www.identitytheft.gov/"
+        ]
     ],
     "Credit cards": [
-      ["CFPB credit card resources", "https://www.consumerfinance.gov/consumer-tools/credit-cards/"],
-      ["CFPB credit reports and scores", "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/"]
+        [
+            "CFPB credit card resources",
+            "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+        ],
+        [
+            "Federal Reserve consumer credit information",
+            "https://www.federalreserve.gov/consumerscommunities.htm"
+        ]
     ],
-    Mortgages: [
-      ["CFPB mortgage resources", "https://www.consumerfinance.gov/consumer-tools/mortgages/"],
-      ["HUD home loan resources", "https://www.hud.gov/helping-americans/loans"]
+    "Debt management": [
+        [
+            "CFPB debt collection resources",
+            "https://www.consumerfinance.gov/consumer-tools/debt-collection/"
+        ],
+        [
+            "CFPB debt-to-income explanation",
+            "https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-ratio-en-1791/"
+        ]
+    ],
+    "Personal loans": [
+        [
+            "CFPB personal installment loan fees",
+            "https://www.consumerfinance.gov/ask-cfpb/do-personal-installment-loans-have-fees-en-2120/"
+        ],
+        [
+            "CFPB APR explanation",
+            "https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-loan-interest-rate-and-the-apr-en-733/"
+        ]
+    ],
+    "Mortgages & home buying": [
+        [
+            "CFPB mortgage resources",
+            "https://www.consumerfinance.gov/consumer-tools/mortgages/"
+        ],
+        [
+            "HUD homebuyer resources",
+            "https://www.hud.gov/helping-americans/loans"
+        ]
+    ],
+    "Auto insurance": [
+        [
+            "NAIC auto insurance consumer guide",
+            "https://content.naic.org/consumer/auto-insurance.htm"
+        ],
+        [
+            "NAIC auto insurance topics",
+            "https://content.naic.org/insurance-topics/auto-insurance"
+        ]
+    ],
+    "Home & life insurance": [
+        [
+            "NAIC homeowners insurance resources",
+            "https://content.naic.org/consumer/homeowners-insurance.htm"
+        ],
+        [
+            "NAIC life insurance resources",
+            "https://content.naic.org/consumer/life-insurance.htm"
+        ]
+    ],
+    "Retirement, taxes & benefits": [
+        [
+            "IRS retirement plan resources",
+            "https://www.irs.gov/retirement-plans"
+        ],
+        [
+            "Social Security retirement benefits",
+            "https://www.ssa.gov/retirement"
+        ]
     ]
-  };
+};
+
+  var HUB_PATHS = {
+    "Savings & banking": "/savings.html",
+    "Budgeting & emergency funds": "/budgeting.html",
+    "Credit scores & reports": "/credit-scores.html",
+    "Credit cards": "/credit-cards.html",
+    "Debt management": "/debt.html",
+    "Personal loans": "/personal-loans.html",
+    "Mortgages & home buying": "/mortgages.html",
+    "Auto insurance": "/auto-insurance.html",
+    "Home & life insurance": "/insurance.html",
+    "Retirement, taxes & benefits": "/retirement-taxes-benefits.html"
+};
 
   function normalizePath(value) {
     var path = (value || "/").split("?")[0].split("#")[0];
@@ -184,6 +392,10 @@
   function setupSources(category) {
     var list = document.querySelector("[data-source-list]");
     if (!list) return;
+    if (list.children.length) return;
+    if (list.children.length) return;
+    if (list.children.length) return;
+    if (list.children.length) return;
     var sources = SOURCE_LIBRARY[category] || [];
     sources.forEach(function (source) {
       var item = document.createElement("li");
@@ -209,7 +421,7 @@
       return;
     }
 
-    var categoryPath = "/" + category.toLowerCase().replace(/\s+/g, "-") + ".html";
+    var categoryPath = HUB_PATHS[category] || "/";
     var head = document.createElement("div");
     head.className = "related-guides-head";
     var title = document.createElement("h2");
@@ -267,7 +479,7 @@
     var article = document.querySelector(".article-body");
     if (!article) return;
     var categoryNode = document.querySelector(".article-hero .tag");
-    var category = categoryNode ? categoryNode.textContent.trim() : "";
+    var category = document.body.getAttribute("data-hub") || (categoryNode ? categoryNode.textContent.trim() : "");
     setupArticleToc(article);
     setupTables(article);
     setupSources(category);
