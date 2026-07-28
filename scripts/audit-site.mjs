@@ -224,8 +224,11 @@ if (!robots.includes("Sitemap: https://moneymooring.com/sitemap.xml")) {
 }
 
 const analytics = fs.readFileSync(path.join(root, "analytics.js"), "utf8");
-if (!/ga4Id:\s*""/.test(analytics) || !/metaPixelId:\s*""/.test(analytics)) {
-  fail("analytics.js: analytics IDs must remain blank before configuration");
+if (!/ga4Id:\s*"G-[A-Z0-9]+"/.test(analytics)) {
+  fail("analytics.js: a valid GA4 measurement ID is required");
+}
+if (!/metaPixelId:\s*""/.test(analytics)) {
+  fail("analytics.js: Meta Pixel must remain unconfigured");
 }
 if (analytics.includes('querySelectorAll(".related-search")')) {
   fail("analytics.js: old visible RSOC selector remains");
@@ -262,7 +265,7 @@ notes.push(`${htmlFiles.length} public HTML pages`);
 notes.push(`${sitemapUrls.length} sitemap URLs`);
 notes.push(`${articleCount} article pages across ${hubPages.length} topic hubs`);
 notes.push("unique title/description/H1, canonical, JSON-LD and internal links checked");
-notes.push("RSOC hooks hidden; GA4 and Meta IDs blank");
+notes.push("RSOC hooks hidden; GA4 configured and Meta Pixel remains blank");
 
 if (failures.length) {
   console.error(`Audit failed with ${failures.length} issue(s):`);
