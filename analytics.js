@@ -5,7 +5,7 @@
   "use strict";
 
   var config = {
-    ga4Id: "",
+    ga4Id: "G-KPSK42GRS3",
     metaPixelId: "",
   };
 
@@ -86,9 +86,9 @@
     window.gtag("js", new Date());
     window.gtag("consent", "update", {
       analytics_storage: "granted",
-      ad_storage: "granted",
-      ad_user_data: "granted",
-      ad_personalization: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
     });
     window.gtag("config", config.ga4Id, {
       send_page_view: true,
