@@ -43,6 +43,55 @@ function stripTags(value) {
     .trim();
 }
 
+function cleanPath(value) {
+  if (value === "/index.html") return "/";
+  return String(value).replace(/\.html$/, "") || "/";
+}
+
+function publicUrl(value) {
+  return `https://moneymooring.com${cleanPath(value)}`;
+}
+
+const seoTitles = {
+  "annual-credit-reports-guide": "Annual Credit Reports: Request and Review",
+  "avalanche-vs-snowball": "Debt Avalanche vs. Snowball",
+  "auto-insurance-coverage-types": "Auto Insurance Coverage Types Explained",
+  "balance-transfer-credit-cards": "Balance Transfer Credit Cards Guide",
+  "bill-calendar-guide": "Bill Calendar Guide for Pay Cycles",
+  "car-insurance-for-seniors": "Car Insurance for Older Drivers",
+  "cd-vs-savings-account": "CDs vs. Savings Accounts",
+  "checking-account-fees-guide": "Checking Account Fees Comparison Guide",
+  "credit-card-apr-interest-explained": "Credit Card APR and Interest Explained",
+  "credit-card-grace-period": "Credit Card Grace Periods Explained",
+  "credit-freeze-guide": "Credit Freezes: How They Work",
+  "credit-utilization-explained": "Credit Utilization Explained",
+  "debt-collection-validation-rights": "Debt Validation Notice Response Checklist",
+  "emergency-fund-how-much": "Emergency Fund Savings Target",
+  "fdic-deposit-insurance-explained": "FDIC Deposit Insurance Coverage Guide",
+  "fha-vs-conventional-loans": "FHA vs. Conventional Loans",
+  "flood-insurance-basics": "Flood Insurance Coverage Basics",
+  "high-yield-savings-accounts": "High-Yield Savings Accounts Guide",
+  "home-insurance-what-it-covers": "Homeowners Insurance Coverage Guide",
+  "how-much-house-can-you-afford": "How Much House Can You Afford?",
+  "how-to-build-a-monthly-budget": "How to Build a Monthly Budget",
+  "joint-bank-accounts-beneficiaries": "Joint Bank Accounts and FDIC Insurance",
+  "life-insurance-needs-framework": "How Much Life Insurance Do You Need?",
+  "minimum-credit-card-payment-cost": "Minimum Credit Card Payment Cost",
+  "mortgage-closing-costs": "Mortgage Closing Costs Explained",
+  "mortgage-preapproval-documents": "Mortgage Preapproval Document Checklist",
+  "mortgage-refinance-guide": "Mortgage Refinance Break-Even Guide",
+  "nonprofit-credit-counseling-guide": "Nonprofit Credit Counseling Guide",
+  "personal-loan-payment-calculator": "Personal Loan Payment Calculator",
+  "personal-loan-prequalification": "Personal Loan Prequalification Guide",
+  "renters-insurance-guide": "Renters Insurance Coverage Guide",
+  "required-minimum-distributions-basics": "Required Minimum Distributions Guide",
+  "secured-vs-unsecured-personal-loans": "Secured vs. Unsecured Personal Loans",
+  "sinking-funds-guide": "Sinking Funds for Irregular Expenses",
+  "social-security-retirement-basics": "Social Security Retirement Benefits",
+  "term-vs-whole-life-insurance": "Term vs. Whole Life Insurance",
+  "traditional-vs-roth-ira": "Traditional vs. Roth IRA Guide"
+};
+
 function head({
   title,
   description,
@@ -289,6 +338,7 @@ ${cookieBanner()}
 function renderNewArticle(article) {
   const hub = hubByKey[article.hub];
   const canonical = `https://moneymooring.com/articles/${article.slug}.html`;
+  const seoTitle = seoTitles[article.slug] || article.title;
   const visual = articleVisual(hub, `/articles/${article.slug}.html`);
   const articleSchema = {
     "@context": "https://schema.org",
@@ -337,7 +387,7 @@ function renderNewArticle(article) {
   ).join("");
 
   return `${head({
-    title: `${article.title} | MoneyMooring`,
+    title: `${seoTitle} | MoneyMooring`,
     description: article.description,
     canonical,
     type: "article",
@@ -681,13 +731,13 @@ const existingArticleDescriptions = {
   "emergency-fund-how-much.html": "Set an emergency savings target from essential expenses, household risks and realistic monthly contributions.",
   "improve-credit-score-fast.html": "How payment history, reported balances, account age, applications and credit report errors can affect credit scores over time.",
   "balance-transfer-credit-cards.html": "How balance transfer offers, fees, promotional timelines and payoff math fit together before an application.",
-  "cash-back-credit-cards-guide.html": "Compare cash-back card rewards with annual fees, interest, category rules and redemption limits.",
+  "cash-back-credit-cards-guide.html": "Compare cash-back credit card rewards, annual fees, interest costs, category limits and redemption rules before applying.",
   "avalanche-vs-snowball.html": "Compare avalanche and snowball debt payoff methods with a worked example and a practical hybrid approach.",
   "debt-consolidation-loans.html": "How to compare debt consolidation APR, fees, net proceeds, term and total repayment without relying on score-based rate promises.",
   "personal-loans-explained.html": "How personal loans work and how to compare APR, fees, net proceeds, payments, term and prequalification.",
   "fha-vs-conventional-loans.html": "Compare FHA and conventional mortgages by eligibility, down payment, mortgage insurance and total cost.",
   "how-much-house-can-you-afford.html": "Build a home-buying budget from take-home cash flow, full ownership costs, reserves and lender disclosures.",
-  "mortgage-refinance-guide.html": "Use closing costs, monthly savings, break-even time and loan term to evaluate a mortgage refinance.",
+  "mortgage-refinance-guide.html": "Evaluate mortgage refinancing with closing costs, monthly savings, break-even time, remaining term and total repayment.",
   "car-insurance-for-seniors.html": "Compare auto insurance for older drivers using matched coverage, deductibles, discounts and state-specific rules.",
   "home-insurance-what-it-covers.html": "What homeowners insurance commonly covers, important exclusions and questions to ask about limits and endorsements.",
   "term-vs-whole-life-insurance.html": "Compare term and whole life insurance by coverage period, premiums, cash value, flexibility and policy terms."
@@ -697,6 +747,7 @@ function patchExistingArticle(file) {
   const basename = path.basename(file);
   const hubKey = articleAssignments[basename];
   const newTitle = existingArticleTitles[basename];
+  const seoTitle = seoTitles[basename.replace(/\.html$/, "")] || newTitle;
   if (!hubKey || !newTitle) throw new Error(`Missing assignment or title for ${basename}`);
   const hub = hubByKey[hubKey];
   const visualData = articleVisual(hub, `/articles/${basename}`);
@@ -738,11 +789,11 @@ function patchExistingArticle(file) {
   const schemaBlock = `<script type="application/ld+json">${JSON.stringify(articleSchema)}</script>${faqSchema ? `\n<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>` : ""}`;
 
   html = html
-    .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(newTitle)} | MoneyMooring</title>`)
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(seoTitle)} | MoneyMooring</title>`)
     .replace(/<meta name="description" content="[^"]+">/, `<meta name="description" content="${escapeHtml(description)}">`)
-    .replace(/<meta property="og:title" content="[^"]+">/, `<meta property="og:title" content="${escapeHtml(newTitle)} | MoneyMooring">`)
+    .replace(/<meta property="og:title" content="[^"]+">/, `<meta property="og:title" content="${escapeHtml(seoTitle)} | MoneyMooring">`)
     .replace(/<meta property="og:description" content="[^"]+">/, `<meta property="og:description" content="${escapeHtml(description)}">`)
-    .replace(/<meta name="twitter:title" content="[^"]+">/, `<meta name="twitter:title" content="${escapeHtml(newTitle)} | MoneyMooring">`)
+    .replace(/<meta name="twitter:title" content="[^"]+">/, `<meta name="twitter:title" content="${escapeHtml(seoTitle)} | MoneyMooring">`)
     .replace(/<meta name="twitter:description" content="[^"]+">/, `<meta name="twitter:description" content="${escapeHtml(description)}">`)
     .replace(/<script type="application\/ld\+json">[\s\S]*?"@type":"Article"[\s\S]*?<\/script>(?:\s*<script type="application\/ld\+json">[\s\S]*?"@type":"FAQPage"[\s\S]*?<\/script>)?/, schemaBlock)
     .replace(/<body class="article-page"(?:\s+data-hub="[^"]+")?>/, `<body class="article-page" data-hub="${escapeHtml(hubKey)}">`)
@@ -790,10 +841,10 @@ function patchSharedChrome() {
 function patchSiteJs() {
   const guideLibrary = Object.fromEntries(hubs.map((hub) => [
     hub.key,
-    hub.articles.map((article) => [article[0], article[1]])
+    hub.articles.map((article) => [article[0], cleanPath(article[1])])
   ]));
   const sourceLibrary = Object.fromEntries(hubs.map((hub) => [hub.key, hub.sources]));
-  const hubPaths = Object.fromEntries(hubs.map((hub) => [hub.key, hub.path]));
+  const hubPaths = Object.fromEntries(hubs.map((hub) => [hub.key, cleanPath(hub.path)]));
   const libraryBlock = `var GUIDE_LIBRARY = ${JSON.stringify(guideLibrary, null, 4)};\n\n  var SOURCE_LIBRARY = ${JSON.stringify(sourceLibrary, null, 4)};\n\n  var HUB_PATHS = ${JSON.stringify(hubPaths, null, 4)};\n\n  `;
   const file = path.join(root, "site.js");
   let js = fs.readFileSync(file, "utf8");
@@ -822,7 +873,9 @@ function writeSitemap() {
   });
   const urls = files.map((file) => {
     const relative = path.relative(root, file).replaceAll(path.sep, "/");
-    const loc = relative === "index.html" ? "https://moneymooring.com/" : `https://moneymooring.com/${relative}`;
+    const loc = relative === "index.html"
+      ? "https://moneymooring.com/"
+      : publicUrl(`/${relative}`);
     return `  <url><loc>${loc}</loc><lastmod>${isoDate}</lastmod></url>`;
   });
   fs.writeFileSync(path.join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`);
@@ -832,10 +885,39 @@ function writeContentMap() {
   const rows = hubs.flatMap((hub) =>
     hub.articles.map((article) => {
       const isNew = newArticles.some((item) => `/articles/${item.slug}.html` === article[1]);
-      return `| ${hub.title} | [${article[0]}](..${article[1]}) | ${isNew ? "New cornerstone" : "Existing, reassigned"} |`;
+      return `| ${hub.title} | [${article[0]}](..${cleanPath(article[1])}) | ${isNew ? "New cornerstone" : "Existing, reassigned"} |`;
     })
   );
   fs.writeFileSync(path.join(root, "docs", "content-map.md"), `# MoneyMooring content map\n\nUpdated ${checkedDate}.\n\n| Hub | Article | Status |\n|---|---|---|\n${rows.join("\n")}\n\nAll ten hubs include five real, linked guides. No placeholder cards are published.\n`);
+}
+
+function normalizePublishedUrls() {
+  for (const file of walkHtml(root)) {
+    const relative = path.relative(root, file).replaceAll(path.sep, "/");
+    let html = fs.readFileSync(file, "utf8");
+    html = html
+      .replace(
+        /https:\/\/moneymooring\.com\/([^"'<>\s]+?)\.html(?=["'<>\s])/g,
+        "https://moneymooring.com/$1"
+      )
+      .replace(
+        /href="((?:\/|\.\.\/|\.\/)?[^":?#]+?)\.html([?#][^"]*)?"/g,
+        (_, target, suffix = "") => `href="${target}${suffix}"`
+      );
+    if (relative === "index.html") {
+      html = html.replaceAll("https://moneymooring.com/index", "https://moneymooring.com/");
+    }
+    fs.writeFileSync(file, html);
+  }
+}
+
+function writeRedirects() {
+  const rules = walkHtml(root).map((file) => {
+    const relative = path.relative(root, file).replaceAll(path.sep, "/");
+    if (relative === "index.html") return "/index.html / 301!";
+    return `/${relative} ${cleanPath(`/${relative}`)} 301!`;
+  });
+  fs.writeFileSync(path.join(root, "_redirects"), `${rules.join("\n")}\n`);
 }
 
 for (const hub of hubs) {
@@ -855,5 +937,7 @@ patchSharedChrome();
 patchSiteJs();
 writeSitemap();
 writeContentMap();
+normalizePublishedUrls();
+writeRedirects();
 
 console.log(`Built ${hubs.length} hubs, ${newArticles.length} new articles and a ${hubs.reduce((sum, hub) => sum + hub.articles.length, 0)}-guide content map.`);

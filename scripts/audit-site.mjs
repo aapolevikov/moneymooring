@@ -31,11 +31,15 @@ function resolveLocalLink(fromFile, href) {
   if (!href || /^(?:https?:|mailto:|tel:|javascript:|#)/i.test(href)) return null;
   const clean = href.split("#")[0].split("?")[0];
   if (!clean) return null;
+  let target;
   if (clean.startsWith("/")) {
     if (clean === "/") return path.join(root, "index.html");
-    return path.join(root, clean.slice(1));
+    target = path.join(root, clean.slice(1));
+  } else {
+    target = path.resolve(path.dirname(fromFile), clean);
   }
-  return path.resolve(path.dirname(fromFile), clean);
+  if (!path.extname(target) && fs.existsSync(`${target}.html`)) return `${target}.html`;
+  return target;
 }
 
 const htmlFiles = walk(root).filter((file) => !path.basename(file).startsWith("google"));
@@ -66,7 +70,7 @@ for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   const canonical = relative === "index.html"
     ? "https://moneymooring.com/"
-    : `https://moneymooring.com/${relative}`;
+    : `https://moneymooring.com/${relative.replace(/\.html$/, "")}`;
 
   for (const [label, pattern, expected] of [
     ["title", /<title>[\s\S]*?<\/title>/g, 1],
@@ -92,6 +96,11 @@ for (const file of htmlFiles) {
   const titleText = stripMarkup((html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || "");
   const h1Text = stripMarkup((html.match(/<h1(?:\s[^>]*)?>([\s\S]*?)<\/h1>/) || [])[1] || "");
   const descriptionText = (html.match(/<meta\s+name="description"\s+content="([^"]+)">/) || [])[1] || "";
+  if (titleText.length > 65) fail(`${relative}: title is too long (${titleText.length} characters)`);
+  if ((relative.startsWith("articles/") || hubPages.includes(relative))
+      && (descriptionText.length < 100 || descriptionText.length > 170)) {
+    fail(`${relative}: description length should be 100–170 characters (${descriptionText.length})`);
+  }
   if (titles.has(titleText)) fail(`${relative}: duplicate title with ${titles.get(titleText)}`);
   else titles.set(titleText, relative);
   if (headings.has(h1Text)) fail(`${relative}: duplicate H1 with ${headings.get(h1Text)}`);
@@ -112,6 +121,9 @@ for (const file of htmlFiles) {
   if (duplicates.length) fail(`${relative}: duplicate IDs ${[...new Set(duplicates)].join(", ")}`);
 
   for (const match of matches(html, /<a\b[^>]*\shref="([^"]+)"/g)) {
+    if (/^(?:\/|\.\.\/|\.\/)?[^":?#]+\.html(?:[?#]|$)/.test(match[1])) {
+      fail(`${relative}: internal link should use the clean URL ${match[1]}`);
+    }
     const target = resolveLocalLink(file, match[1]);
     if (target && !fs.existsSync(target)) fail(`${relative}: broken link ${match[1]}`);
   }
@@ -223,6 +235,27 @@ const verification = path.join(root, "google5cc0e6bad5fa68fb.html");
 if (!fs.existsSync(verification)) fail("Search Console verification file is missing");
 if (!fs.existsSync(path.join(root, "assets", "moneymooring-social.png"))) {
   fail("Social preview image is missing");
+}
+
+const redirectsPath = path.join(root, "_redirects");
+if (!fs.existsSync(redirectsPath)) {
+  fail("_redirects: clean-URL redirect rules are missing");
+} else {
+  const redirects = fs.readFileSync(redirectsPath, "utf8");
+  for (const file of htmlFiles) {
+    const relative = path.relative(root, file).replaceAll(path.sep, "/");
+    const source = `/${relative}`;
+    const destination = relative === "index.html"
+      ? "/"
+      : `/${relative.replace(/\.html$/, "")}`;
+    if (!redirects.includes(`${source} ${destination} 301!`)) {
+      fail(`_redirects: missing ${source} -> ${destination}`);
+    }
+  }
+}
+
+for (const url of sitemapUrls) {
+  if (/\.html(?:$|[?#])/.test(url)) fail(`sitemap: legacy .html URL remains ${url}`);
 }
 
 notes.push(`${htmlFiles.length} public HTML pages`);

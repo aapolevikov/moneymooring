@@ -1118,7 +1118,7 @@ export const expansionArticles = [
     slug: "required-minimum-distributions-basics",
     hub: "Retirement, taxes & benefits",
     title: "Required Minimum Distributions: Accounts, Timing and Calculation",
-    description: "Understand which retirement accounts can require annual distributions, when the first deadline applies and how prior-year balance and IRS life-expectancy factors are used.",
+    description: "Understand which retirement accounts require annual distributions, when deadlines apply and how prior-year balances and IRS factors are used.",
     takeaways: [
       "RMDs generally apply to traditional IRAs and many employer retirement plans beginning at the applicable age under current law.",
       "Roth IRAs and designated Roth accounts generally do not require lifetime RMDs for the original owner under current federal rules.",
