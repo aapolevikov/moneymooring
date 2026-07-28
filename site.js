@@ -5,221 +5,221 @@
     "Savings & banking": [
         [
             "High-Yield Savings Accounts: How to Compare APYs and Fees",
-            "/articles/high-yield-savings-accounts.html"
+            "/articles/high-yield-savings-accounts"
         ],
         [
             "CDs vs. Savings Accounts: Liquidity, Rates and Trade-Offs",
-            "/articles/cd-vs-savings-account.html"
+            "/articles/cd-vs-savings-account"
         ],
         [
             "FDIC Deposit Insurance: Coverage Rules and Common Mistakes",
-            "/articles/fdic-deposit-insurance-explained.html"
+            "/articles/fdic-deposit-insurance-explained"
         ],
         [
             "Checking Account Fees: A Practical Comparison Guide",
-            "/articles/checking-account-fees-guide.html"
+            "/articles/checking-account-fees-guide"
         ],
         [
             "Joint Bank Accounts and Beneficiaries: Ownership and FDIC Basics",
-            "/articles/joint-bank-accounts-beneficiaries.html"
+            "/articles/joint-bank-accounts-beneficiaries"
         ]
     ],
     "Budgeting & emergency funds": [
         [
             "How to Build a Monthly Budget That Matches Your Pay Cycle",
-            "/articles/how-to-build-a-monthly-budget.html"
+            "/articles/how-to-build-a-monthly-budget"
         ],
         [
             "Sinking Funds: A Practical System for Irregular Expenses",
-            "/articles/sinking-funds-guide.html"
+            "/articles/sinking-funds-guide"
         ],
         [
             "Emergency Funds: How to Set a Practical Savings Target",
-            "/articles/emergency-fund-how-much.html"
+            "/articles/emergency-fund-how-much"
         ],
         [
             "How to Budget With Variable Income",
-            "/articles/variable-income-budget.html"
+            "/articles/variable-income-budget"
         ],
         [
             "Bill Calendar Guide: Match Due Dates to Your Pay Cycle",
-            "/articles/bill-calendar-guide.html"
+            "/articles/bill-calendar-guide"
         ]
     ],
     "Credit scores & reports": [
         [
             "How to Dispute Errors on Your Credit Reports",
-            "/articles/how-to-dispute-credit-report-errors.html"
+            "/articles/how-to-dispute-credit-report-errors"
         ],
         [
             "Credit Freezes: What They Block and How to Manage Them",
-            "/articles/credit-freeze-guide.html"
+            "/articles/credit-freeze-guide"
         ],
         [
             "How Credit Scores Change: Fast and Slow Factors",
-            "/articles/improve-credit-score-fast.html"
+            "/articles/improve-credit-score-fast"
         ],
         [
             "Annual Credit Reports: How to Request and Review All Three",
-            "/articles/annual-credit-reports-guide.html"
+            "/articles/annual-credit-reports-guide"
         ],
         [
             "Credit Utilization Explained: Balances, Limits and Reporting Dates",
-            "/articles/credit-utilization-explained.html"
+            "/articles/credit-utilization-explained"
         ]
     ],
     "Credit cards": [
         [
             "Credit Card APR and Interest: A Statement-by-Statement Guide",
-            "/articles/credit-card-apr-interest-explained.html"
+            "/articles/credit-card-apr-interest-explained"
         ],
         [
             "Balance Transfer Credit Cards: Fees, Timelines and Payoff Planning",
-            "/articles/balance-transfer-credit-cards.html"
+            "/articles/balance-transfer-credit-cards"
         ],
         [
             "Cash-Back Credit Cards: Rewards, Fees and Interest",
-            "/articles/cash-back-credit-cards-guide.html"
+            "/articles/cash-back-credit-cards-guide"
         ],
         [
             "Credit Card Grace Periods: How Purchase Interest Can Be Avoided",
-            "/articles/credit-card-grace-period.html"
+            "/articles/credit-card-grace-period"
         ],
         [
             "Minimum Credit Card Payments: Cost, Timing and a Payoff Plan",
-            "/articles/minimum-credit-card-payment-cost.html"
+            "/articles/minimum-credit-card-payment-cost"
         ]
     ],
     "Debt management": [
         [
             "Debt-to-Income Ratio: Calculation, Uses and Limits",
-            "/articles/debt-to-income-ratio.html"
+            "/articles/debt-to-income-ratio"
         ],
         [
             "Debt Avalanche vs. Debt Snowball: How the Two Payoff Methods Compare",
-            "/articles/avalanche-vs-snowball.html"
+            "/articles/avalanche-vs-snowball"
         ],
         [
             "Debt Consolidation Loans: Benefits, Fees and Risks",
-            "/articles/debt-consolidation-loans.html"
+            "/articles/debt-consolidation-loans"
         ],
         [
             "Debt Collection Validation Notices: A Response Checklist",
-            "/articles/debt-collection-validation-rights.html"
+            "/articles/debt-collection-validation-rights"
         ],
         [
             "Nonprofit Credit Counseling and Debt Management Plans",
-            "/articles/nonprofit-credit-counseling-guide.html"
+            "/articles/nonprofit-credit-counseling-guide"
         ]
     ],
     "Personal loans": [
         [
             "Secured vs. Unsecured Personal Loans: Risk and Cost",
-            "/articles/secured-vs-unsecured-personal-loans.html"
+            "/articles/secured-vs-unsecured-personal-loans"
         ],
         [
             "Personal Loan APR and Fees: How to Compare Offers",
-            "/articles/personal-loan-apr-fees.html"
+            "/articles/personal-loan-apr-fees"
         ],
         [
             "Personal Loans: Rates, Fees and Prequalification",
-            "/articles/personal-loans-explained.html"
+            "/articles/personal-loans-explained"
         ],
         [
             "Personal Loan Prequalification: What to Compare Before Applying",
-            "/articles/personal-loan-prequalification.html"
+            "/articles/personal-loan-prequalification"
         ],
         [
             "Personal Loan Payment Calculator: Formula, Fees and Total Cost",
-            "/articles/personal-loan-payment-calculator.html"
+            "/articles/personal-loan-payment-calculator"
         ]
     ],
     "Mortgages & home buying": [
         [
             "FHA vs. Conventional Loans: Down Payments, Insurance and Eligibility",
-            "/articles/fha-vs-conventional-loans.html"
+            "/articles/fha-vs-conventional-loans"
         ],
         [
             "How Much House Can You Afford? A Practical Budget Framework",
-            "/articles/how-much-house-can-you-afford.html"
+            "/articles/how-much-house-can-you-afford"
         ],
         [
             "Mortgage Refinancing: Costs, Break-Even Math and Timing",
-            "/articles/mortgage-refinance-guide.html"
+            "/articles/mortgage-refinance-guide"
         ],
         [
             "Mortgage Closing Costs: Read the Loan Estimate and Cash to Close",
-            "/articles/mortgage-closing-costs.html"
+            "/articles/mortgage-closing-costs"
         ],
         [
             "Mortgage Preapproval Documents and Questions to Prepare",
-            "/articles/mortgage-preapproval-documents.html"
+            "/articles/mortgage-preapproval-documents"
         ]
     ],
     "Auto insurance": [
         [
             "Auto Insurance Coverage Types: Liability, Collision and Comprehensive",
-            "/articles/auto-insurance-coverage-types.html"
+            "/articles/auto-insurance-coverage-types"
         ],
         [
             "Auto Insurance Deductibles and Quote Comparison",
-            "/articles/auto-insurance-deductibles-quotes.html"
+            "/articles/auto-insurance-deductibles-quotes"
         ],
         [
             "Car Insurance for Older Drivers: Coverage and Quote Comparison",
-            "/articles/car-insurance-for-seniors.html"
+            "/articles/car-insurance-for-seniors"
         ],
         [
             "Uninsured and Underinsured Motorist Coverage",
-            "/articles/uninsured-underinsured-motorist-coverage.html"
+            "/articles/uninsured-underinsured-motorist-coverage"
         ],
         [
             "Auto Insurance Claim Checklist After a Crash",
-            "/articles/auto-insurance-claim-checklist.html"
+            "/articles/auto-insurance-claim-checklist"
         ]
     ],
     "Home & life insurance": [
         [
             "Homeowners Insurance: Coverage, Limits and Common Gaps",
-            "/articles/home-insurance-what-it-covers.html"
+            "/articles/home-insurance-what-it-covers"
         ],
         [
             "Renters Insurance: Property, Liability and Loss-of-Use Coverage",
-            "/articles/renters-insurance-guide.html"
+            "/articles/renters-insurance-guide"
         ],
         [
             "Term vs. Whole Life Insurance: Costs and Trade-Offs",
-            "/articles/term-vs-whole-life-insurance.html"
+            "/articles/term-vs-whole-life-insurance"
         ],
         [
             "Flood Insurance Basics: Building, Contents and Waiting Periods",
-            "/articles/flood-insurance-basics.html"
+            "/articles/flood-insurance-basics"
         ],
         [
             "How Much Life Insurance? A Needs-Based Planning Framework",
-            "/articles/life-insurance-needs-framework.html"
+            "/articles/life-insurance-needs-framework"
         ]
     ],
     "Retirement, taxes & benefits": [
         [
             "401(k) Basics: Contributions, Matching and Vesting",
-            "/articles/401k-basics.html"
+            "/articles/401k-basics"
         ],
         [
             "Traditional vs. Roth IRA: Tax Timing and Withdrawal Rules",
-            "/articles/traditional-vs-roth-ira.html"
+            "/articles/traditional-vs-roth-ira"
         ],
         [
             "Social Security Retirement Benefits: Eligibility and Claiming Age",
-            "/articles/social-security-retirement-basics.html"
+            "/articles/social-security-retirement-basics"
         ],
         [
             "401(k) Employer Match and Vesting: Read Your Plan",
-            "/articles/employer-match-vesting.html"
+            "/articles/employer-match-vesting"
         ],
         [
             "Required Minimum Distributions: Accounts, Timing and Calculation",
-            "/articles/required-minimum-distributions-basics.html"
+            "/articles/required-minimum-distributions-basics"
         ]
     ]
 };
@@ -328,16 +328,16 @@
 };
 
   var HUB_PATHS = {
-    "Savings & banking": "/savings.html",
-    "Budgeting & emergency funds": "/budgeting.html",
-    "Credit scores & reports": "/credit-scores.html",
-    "Credit cards": "/credit-cards.html",
-    "Debt management": "/debt.html",
-    "Personal loans": "/personal-loans.html",
-    "Mortgages & home buying": "/mortgages.html",
-    "Auto insurance": "/auto-insurance.html",
-    "Home & life insurance": "/insurance.html",
-    "Retirement, taxes & benefits": "/retirement-taxes-benefits.html"
+    "Savings & banking": "/savings",
+    "Budgeting & emergency funds": "/budgeting",
+    "Credit scores & reports": "/credit-scores",
+    "Credit cards": "/credit-cards",
+    "Debt management": "/debt",
+    "Personal loans": "/personal-loans",
+    "Mortgages & home buying": "/mortgages",
+    "Auto insurance": "/auto-insurance",
+    "Home & life insurance": "/insurance",
+    "Retirement, taxes & benefits": "/retirement-taxes-benefits"
 };
 
   function normalizePath(value) {
@@ -472,6 +472,9 @@
   function setupSources(category) {
     var list = document.querySelector("[data-source-list]");
     if (!list) return;
+    if (list.children.length) return;
+    if (list.children.length) return;
+    if (list.children.length) return;
     if (list.children.length) return;
     if (list.children.length) return;
     if (list.children.length) return;
