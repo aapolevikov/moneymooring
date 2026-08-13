@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;650&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Personal Loan Payment Calculator: Formula, Fees and Total Cost","description":"Estimate a fixed-rate installment payment and compare it with origination fees, net proceeds and total repayment.","mainEntityOfPage":"https://moneymooring.com/articles/personal-loan-payment-calculator","datePublished":"2026-07-28","dateModified":"2026-07-28","author":{"@type":"Organization","name":"MoneyMooring Editorial Team","url":"https://moneymooring.com/editorial-team"},"reviewedBy":{"@type":"Organization","name":"MoneyMooring Editorial Team","url":"https://moneymooring.com/editorial-policy"},"publisher":{"@type":"Organization","name":"MoneyMooring","url":"https://moneymooring.com/"},"image":"https://moneymooring.com/assets/topic-personal-loans-v1.jpg"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Personal Loan Payment Calculator: Formula, Fees and Total Cost","description":"Estimate a fixed-rate installment payment and compare it with origination fees, net proceeds and total repayment.","mainEntityOfPage":"https://moneymooring.com/articles/personal-loan-payment-calculator","datePublished":"2026-07-28","dateModified":"2026-08-13","author":{"@type":"Organization","name":"MoneyMooring Editorial Team","url":"https://moneymooring.com/editorial-team"},"reviewedBy":{"@type":"Organization","name":"MoneyMooring Editorial Team","url":"https://moneymooring.com/editorial-policy"},"publisher":{"@type":"Organization","name":"MoneyMooring","url":"https://moneymooring.com/"},"image":"https://moneymooring.com/assets/topic-personal-loans-v1.jpg"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is the APR higher than the interest rate?","acceptedAnswer":{"@type":"Answer","text":"APR can incorporate interest plus certain required finance charges, so it may be higher when the loan has an origination or similar fee."}},{"@type":"Question","name":"Does a longer term make a loan cheaper?","acceptedAnswer":{"@type":"Answer","text":"It can lower the monthly payment, but the borrower may pay interest for more months. Compare total repayment."}},{"@type":"Question","name":"Can my lender’s payment differ from the estimate?","acceptedAnswer":{"@type":"Answer","text":"Yes. Rounding, timing, fees and contract structure can change the result. The lender’s final disclosures control."}}]}</script>
 <script defer src="/site.js"></script>
 <script defer src="/analytics.js"></script>
@@ -74,7 +74,7 @@
     </nav>
     <a class="tag" href="/personal-loans">Personal loans</a>
     <h1>Personal Loan Payment Calculator: Formula, Fees and Total Cost</h1>
-    <p class="byline">By <b><a href="/editorial-team">MoneyMooring Editorial Team</a></b> · Updated July 28, 2026 · 9 min read<span class="byline-note">Educational content · Official sources checked July 28, 2026</span></p>
+    <p class="byline">By <b><a href="/editorial-team">MoneyMooring Editorial Team</a></b> · Updated August 13, 2026 · 10 min read<span class="byline-note">Educational content · Official sources checked August 13, 2026</span></p>
   </div>
 </section>
 <div class="wrap">
@@ -89,6 +89,29 @@
       <ul><li>A standard amortizing payment depends on principal, periodic rate and number of payments.</li><li>An origination fee can reduce the cash received even when the stated loan amount is unchanged.</li><li>APR is designed to reflect interest and certain finance charges, making it more useful than the interest rate alone.</li><li>A calculator estimate must be checked against the lender’s final disclosures and payment schedule.</li></ul>
     </div>
     <p>Estimate a fixed-rate installment payment and compare it with origination fees, net proceeds and total repayment. The examples below are explanatory, not product quotes or promises of approval, savings, coverage or investment performance.</p>
+    <section class="interactive-tool" data-loan-calculator aria-labelledby="loan-calculator-title">
+      <div class="tool-heading">
+        <span class="eyebrow">Interactive estimate</span>
+        <h2 id="loan-calculator-title">Personal loan payment calculator</h2>
+        <p>Compare a fixed-rate, fully amortizing monthly loan. Values stay in your browser and are not submitted.</p>
+      </div>
+      <form class="tool-form" novalidate>
+        <label>Loan amount <span>$</span><input name="principal" type="number" min="1" step="100" inputmode="decimal" placeholder="12000" required></label>
+        <label>Interest rate <span>% per year</span><input name="rate" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="10" required></label>
+        <label>Loan term <span>months</span><input name="months" type="number" min="1" max="480" step="1" inputmode="numeric" placeholder="36" required></label>
+        <label>Origination fee <span>% deducted</span><input name="fee" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="0"></label>
+        <button type="submit">Calculate estimate</button>
+      </form>
+      <p class="tool-error" role="alert" hidden></p>
+      <div class="tool-results" aria-live="polite" hidden>
+        <div><span>Estimated monthly payment</span><strong data-result="payment">—</strong></div>
+        <div><span>Scheduled total paid</span><strong data-result="total">—</strong></div>
+        <div><span>Scheduled interest</span><strong data-result="interest">—</strong></div>
+        <div><span>Fee deducted</span><strong data-result="fee">—</strong></div>
+        <div><span>Estimated net proceeds</span><strong data-result="proceeds">—</strong></div>
+      </div>
+      <p class="tool-note">Assumption: equal monthly payments, a fixed interest rate and a fee deducted from proceeds rather than financed. APR can include fees; do not enter APR as though it were the contract interest rate. Lender disclosures control.</p>
+    </section>
     <h2>The payment is one part of the loan</h2>
 <p>For a fixed-rate, fully amortizing loan with equal monthly payments, the standard formula uses the amount financed, monthly interest rate and total number of payments. The result allocates early payments more heavily to interest and later payments more heavily to principal.</p><p>Real offers can include an origination fee, documentation charge, optional insurance or other costs. A fee deducted from proceeds means the borrower receives less cash than the face amount. APR can include interest and certain required finance charges, but optional products and late fees may sit outside the estimate.</p><p>Use a calculator to compare scenarios, not to recreate a lender’s legal disclosure. Rounding, first-payment timing and state rules can produce differences.</p>
 <h2>Build an estimate from the disclosure</h2>
@@ -110,8 +133,8 @@
     <div class="faq"><details><summary>Why is the APR higher than the interest rate?</summary><p>APR can incorporate interest plus certain required finance charges, so it may be higher when the loan has an origination or similar fee.</p></details><details><summary>Does a longer term make a loan cheaper?</summary><p>It can lower the monthly payment, but the borrower may pay interest for more months. Compare total repayment.</p></details><details><summary>Can my lender’s payment differ from the estimate?</summary><p>Yes. Rounding, timing, fees and contract structure can change the result. The lender’s final disclosures control.</p></details></div>
     <section class="article-resources" aria-labelledby="sources-heading">
       <h2 id="sources-heading">Sources and methodology</h2>
-      <p>Primary official materials used for this guide. Checked July 28, 2026. Rules, limits and product terms can change.</p>
-      <ul class="source-list" data-source-list><li><a href="https://www.consumerfinance.gov/ask-cfpb/do-personal-installment-loans-have-fees-en-2120/" target="_blank" rel="noopener noreferrer">CFPB — Personal installment loan fees ↗</a><span>Checked July 28, 2026</span></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-loan-interest-rate-and-the-apr-en-733/" target="_blank" rel="noopener noreferrer">CFPB — Interest rate versus APR ↗</a><span>Checked July 28, 2026</span></li></ul>
+      <p>Primary official materials used for this guide. Checked August 13, 2026. Rules, limits and product terms can change.</p>
+      <ul class="source-list" data-source-list><li><a href="https://www.consumerfinance.gov/ask-cfpb/do-personal-installment-loans-have-fees-en-2120/" target="_blank" rel="noopener noreferrer">CFPB — Personal installment loan fees ↗</a><span>Checked August 13, 2026</span></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-loan-interest-rate-and-the-apr-en-733/" target="_blank" rel="noopener noreferrer">CFPB — Interest rate versus APR ↗</a><span>Checked August 13, 2026</span></li></ul>
     </section>
     <aside class="editorial-card" aria-label="Editorial standards">
       <div class="editorial-card-mark" aria-hidden="true">MM</div>

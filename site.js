@@ -580,6 +580,79 @@
     banner.setAttribute("aria-live", "polite");
   }
 
+  function money(value) {
+    return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(value);
+  }
+
+  function setupLoanCalculator() {
+    var tool = document.querySelector("[data-loan-calculator]");
+    if (!tool) return;
+    var form = tool.querySelector("form");
+    var results = tool.querySelector(".tool-results");
+    var error = tool.querySelector(".tool-error");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var data = new FormData(form);
+      var principal = Number(data.get("principal"));
+      var annualRate = Number(data.get("rate"));
+      var months = Number(data.get("months"));
+      var feePercent = Number(data.get("fee") || 0);
+      if (!(principal > 0) || annualRate < 0 || !(months > 0) || feePercent < 0 || feePercent > 100) {
+        error.textContent = "Enter a positive loan amount and term, plus rates between 0% and 100%.";
+        error.hidden = false;
+        results.hidden = true;
+        return;
+      }
+      var monthlyRate = annualRate / 100 / 12;
+      var payment = monthlyRate === 0
+        ? principal / months
+        : principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+      var total = payment * months;
+      var fee = principal * feePercent / 100;
+      var values = {
+        payment: payment,
+        total: total,
+        interest: total - principal,
+        fee: fee,
+        proceeds: Math.max(0, principal - fee)
+      };
+      Object.keys(values).forEach(function (key) {
+        tool.querySelector('[data-result="' + key + '"]').textContent = money(values[key]);
+      });
+      error.hidden = true;
+      results.hidden = false;
+    });
+  }
+
+  function setupRentersWorksheet() {
+    var tool = document.querySelector("[data-renters-worksheet]");
+    if (!tool) return;
+    var form = tool.querySelector("form");
+    var results = tool.querySelector(".tool-results");
+    var error = tool.querySelector(".tool-error");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var data = new FormData(form);
+      var categories = ["furniture", "electronics", "clothing", "household", "other"];
+      var inventory = categories.reduce(function (sum, key) { return sum + Number(data.get(key) || 0); }, 0);
+      var limit = Number(data.get("limit") || 0);
+      if (inventory < 0 || limit < 0 || !Number.isFinite(inventory) || !Number.isFinite(limit)) {
+        error.textContent = "Use zero or positive dollar amounts.";
+        error.hidden = false;
+        results.hidden = true;
+        return;
+      }
+      var difference = limit - inventory;
+      tool.querySelector('[data-result="inventory"]').textContent = money(inventory);
+      tool.querySelector('[data-result="limit"]').textContent = money(limit);
+      tool.querySelector('[data-result="difference"]').textContent = difference >= 0
+        ? money(difference) + " above inventory"
+        : money(Math.abs(difference)) + " below inventory";
+      error.hidden = true;
+      results.hidden = false;
+    });
+  }
+
   function polishEditorialLayout() {
     document.querySelectorAll(".card").forEach(function (card) {
       if (!card.querySelector(".card-cover")) card.classList.add("card-text");
@@ -621,6 +694,8 @@
     setupRsocSlots();
     setupArticle();
     setupCookieBanner();
+    setupLoanCalculator();
+    setupRentersWorksheet();
     polishEditorialLayout();
   }
 
